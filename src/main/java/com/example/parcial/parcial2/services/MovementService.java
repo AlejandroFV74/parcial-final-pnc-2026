@@ -43,6 +43,13 @@ public class MovementService {
         Book book = bookRepository.findByIsbn(dto.getIsbn())
                 .orElseThrow(() -> new RuntimeException("Book not found"));
 
+        long borrowings = movementRepository.countByLectorAndBookAndType(lector, book, MovementType.BORROWING);
+        long returns = movementRepository.countByLectorAndBookAndType(lector, book, MovementType.RETURN);
+
+        if (borrowings <= returns) {
+            throw new IllegalArgumentException("There is no borrowing existing for this book");
+        }
+
         if (type == MovementType.BORROWING) {
             if (!book.isAvailable()) {
                 throw new RuntimeException("Book is not available");

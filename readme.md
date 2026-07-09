@@ -96,4 +96,8 @@ QA ha reportado que un usuario es capaz de devolver libros que nunca ha solicita
 - Si es posible, explique la causa y resuelva el problema.
 - Si no es posible, explique por qué, haciendo referencia al código correspondiente.
 
+Actualmente si es posible devolver un libro que jamas se ha prestado.
+La causa principal es que no se valida si el la cantidad de prestamos es menor o igual a la cantidad de devoluciones, por lo que se puede devolver un libro que nunca se ha prestado. 
+Para resolverlo se implemento una validacion en el endpoint de devolucion para que solo se pueda devolver un libro si la cantidad de prestamos es mayor a la cantidad de devoluciones.
+
 ---
