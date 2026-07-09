@@ -1,4 +1,4 @@
-# [Nombre] [Carné]
+# [Abraham Alejandro Flores Vásquez] [00067323]
 
 ## Indicaciones
 
