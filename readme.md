@@ -81,6 +81,9 @@ QA ha reportado que el siguiente payload enviado al endpoint `POST /books` provo
 
 **Instrucción:** Explique la causa del problema.
 
+
+El problema era la conversion del texto classic al enum Genre.CLASSIC usado en Genre.valueOf(...). Este es sensible a mayusculas si se usa directamente, por lo que debe ser definido tal cual en el enum.
+
 ---
 
 ### 6. Devolución de libros no prestados (20%)
