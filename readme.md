@@ -46,6 +46,8 @@ Existe un endpoint que devuelve la cantidad de libros disponibles por género. S
 
 **Instrucción:** Explique la causa del problema y resuélvalo.
 
+El problema era que en el script dado, se generaban libros con género nulo, entonces se implemento el conteo excluyendo estos generos nulos y sumando availableCount por genero disponible.
+
 ---
 
 ### 4. Error al consultar un libro por ID (10%)

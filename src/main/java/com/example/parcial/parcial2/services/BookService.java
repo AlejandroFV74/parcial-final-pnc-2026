@@ -7,11 +7,8 @@ import com.example.parcial.parcial2.domain.entities.Genre;
 import com.example.parcial.parcial2.repositories.BookRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -73,19 +70,16 @@ public class BookService {
     }
 
     public List<GenreCountDto> getGenresAvailable() {
-        List<Book> books = bookRepository.findAll();
-        Map<String, Long> countByGenre = new HashMap<>();
-
-        for (Book book : books) {
-            String genreName = book.getGenre().name();
-            countByGenre.put(genreName, countByGenre.getOrDefault(genreName, 0L) + 1);
-        }
-
-        List<GenreCountDto> result = new ArrayList<>();
-        for (Map.Entry<String, Long> entry : countByGenre.entrySet()) {
-            result.add(new GenreCountDto(entry.getKey(), entry.getValue()));
-        }
-
-        return result;
+        return bookRepository.findAll().stream()
+                .filter(book -> book.isAvailable() && book.getAvailableCount() > 0)
+                .filter(book -> book.getGenre() != null)
+                .collect(Collectors.groupingBy(
+                        Book::getGenre,
+                        TreeMap::new,
+                        Collectors.summingLong(Book::getAvailableCount)))
+                .entrySet()
+                .stream()
+                .map(entry -> new GenreCountDto(entry.getKey().name(), entry.getValue()))
+                .toList();
     }
 }
