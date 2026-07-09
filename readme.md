@@ -36,6 +36,8 @@ Un usuario reportó que al pedir prestado el libro **The Selfish Gene**, devolve
 
 **Instrucción:** Explique la causa del problema y resuélvalo.
 
+El problema es que al devolver el libro, el estado del libro no se actualizaba correctamente, lo que impedia volver a prestarlo luego de devolverlo.
+
 ---
 
 ### 3. Cantidad de libros por género (10%)

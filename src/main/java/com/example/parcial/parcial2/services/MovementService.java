@@ -28,6 +28,7 @@ public class MovementService {
     }
 
     public Movement borrowBook(MovementRequestDto dto) {
+
         return createMovement(dto, MovementType.BORROWING);
     }
 
@@ -52,6 +53,8 @@ public class MovementService {
             }
         } else {
             book.setAvailableCount(book.getAvailableCount() + 1);
+            book.setAvailable(true);
+            bookRepository.save(book);
         }
 
         bookRepository.save(book);
