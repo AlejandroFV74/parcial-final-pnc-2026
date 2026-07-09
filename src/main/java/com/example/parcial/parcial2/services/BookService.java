@@ -39,13 +39,14 @@ public class BookService {
                 .orElseThrow(() -> new RuntimeException("Book not found"));
     }
 
-    public List<Book> getAllBooks(String author, String genre) {
+    public List<Book> getAllBooks(String author, Genre genre) {
         if (author != null && genre != null) {
-            return bookRepository.findByAuthorAndGenre(genre, author);
+            return bookRepository.findByAuthorAndGenre(author, genre);
         } else if (author != null) {
             return bookRepository.findByAuthor(author);
         } else if (genre != null) {
-            return bookRepository.findByGenre(Genre.valueOf(genre));
+            return bookRepository.findByGenre(genre);
+
         }
         return bookRepository.findAll();
     }

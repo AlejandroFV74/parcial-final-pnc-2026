@@ -26,6 +26,8 @@ Actualmente:
 
 **Instrucción:** Explique la causa del problema y resuélvalo.
 
+El problema se debe a que el parametro de género estaba siendo pasado como un string en lugar del enum de Genre.
+
 ---
 
 ### 2. Error al volver a prestar un libro (10%)
