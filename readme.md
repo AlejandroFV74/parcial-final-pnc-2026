@@ -60,6 +60,8 @@ GET /books?id=ed16ed1e-7017-4697-a08a-d28c09a74acf
 
 **Instrucción:** Explique la causa del problema.
 
+Esa llamada no corresponde al endpoint definido para buscar por ID, con ? se invoca al llamado de GET /books, por el filtro dinamico de author y genre, se debe ocupar GET /books/{id}, la llamada correcta sería: GET /books/ed16ed1e-7017-4697-a08a-d28c09a74acf
+
 ---
 
 ### 5. Error al crear un libro (10%)
